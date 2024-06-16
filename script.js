@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     let timer;
+    let isRunning = false;
     let milliseconds = 0;
     let seconds = 0;
     let minutes = 0;
@@ -15,34 +16,41 @@ document.addEventListener('DOMContentLoaded', (event) => {
             (hours < 10 ? '0' : '') + hours + ':' + 
             (minutes < 10 ? '0' : '') + minutes + ':' + 
             (seconds < 10 ? '0' : '') + seconds + ':' + 
-            (milliseconds < 10 ? '0' : '') + (milliseconds < 100 ? '0' : '') + milliseconds;
+            (milliseconds < 10 ? '00' : milliseconds < 100 ? '0' : '') + milliseconds;
     }
 
     function startTimer() {
-        timer = setInterval(() => {
-            milliseconds += 10;
-            if (milliseconds >= 1000) {
-                milliseconds = 0;
-                seconds++;
-                if (seconds === 60) {
-                    seconds = 0;
-                    minutes++;
-                    if (minutes === 60) {
-                        minutes = 0;
-                        hours++;
+        if (!isRunning) {
+            isRunning = true;
+            timer = setInterval(() => {
+                milliseconds += 10;
+                if (milliseconds >= 1000) {
+                    milliseconds = 0;
+                    seconds++;
+                    if (seconds === 60) {
+                        seconds = 0;
+                        minutes++;
+                        if (minutes === 60) {
+                            minutes = 0;
+                            hours++;
+                        }
                     }
                 }
-            }
-            updateDisplay();
-        }, 10);
+                updateDisplay();
+            }, 10);
+        }
     }
 
     function stopTimer() {
-        clearInterval(timer);
+        if (isRunning) {
+            isRunning = false;
+            clearInterval(timer);
+        }
     }
 
     function resetTimer() {
         clearInterval(timer);
+        isRunning = false;
         milliseconds = 0;
         seconds = 0;
         minutes = 0;
@@ -54,6 +62,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     stopButton.addEventListener('click', stopTimer);
     resetButton.addEventListener('click', resetTimer);
 
-   
+    // Initialize display
     updateDisplay();
 });
