@@ -22,12 +22,6 @@ body,html {
 }
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
-  gap: 10px;
-}
-
-.container {
     position: absolute;
     top: 30%;
     left: 30%;
