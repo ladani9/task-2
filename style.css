@@ -91,25 +91,26 @@ body,html {
 /* For mobile phones */
 @media (max-width: 480px) {
     .image {
-        height: 300px;
+        height:1700px;
+        width:800px;
     }
     .container {
-        top: 15%;
-        width: 90%;
-        height: auto;
+        top: 100%;
+        left: 70%;
+        width: 450px;
+        height: 70%;
+    
     }
     .display {
-        margin: 10px;
+        margin: 60px;
         font-size: 1.5rem;
     }
     .dis {
-        font-size: 1.5rem;
+        font-size: 3rem;
     }
-    .buttons {
-        margin: 10px;
-    }
+    
     .buttons button {
-        padding: 10px;
+        padding: 20px;
         margin-left: 10px;
         margin-right: 10px;
     }
